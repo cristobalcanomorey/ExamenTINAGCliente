@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aplicacion.modelo.LogSingleton;
-import aplicacion.modelo.ejb.AgentesEJB;
+import aplicacion.modelo.ejb.AgentesEJBCliente;
 
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@EJB
-	AgentesEJB agentesEJB;
+	AgentesEJBCliente agentesEJB;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

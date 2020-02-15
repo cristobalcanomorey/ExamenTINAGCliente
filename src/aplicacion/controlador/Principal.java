@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import aplicacion.modelo.LogSingleton;
-import aplicacion.modelo.ejb.SesionesEJB;
+import aplicacion.modelo.ejb.SesionesEJBCliente;
 import aplicacion.modelo.pojo.Agente;
 
 @WebServlet("/Principal")
@@ -23,7 +23,7 @@ public class Principal extends HttpServlet {
 	private final String AGENTE_NO_EXISTE = "2";
 
 	@EJB
-	SesionesEJB sesionesEJB;
+	SesionesEJBCliente sesionesEJB;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

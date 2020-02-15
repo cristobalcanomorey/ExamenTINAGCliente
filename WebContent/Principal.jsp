@@ -31,6 +31,7 @@
 		<input type="text" name="placa">
 		<p>Contraseña:</p>
 		<input type="text" name="clave">
+		<button type="submit">Login</button>
 	</form>
 	<%
 		String error = (String) request.getAttribute("error");

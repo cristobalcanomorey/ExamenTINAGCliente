@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import aplicacion.modelo.LogSingleton;
-import aplicacion.modelo.ejb.AgentesEJB;
+import aplicacion.modelo.ejb.AgentesEJBCliente;
 import aplicacion.modelo.pojo.Agente;
 
 @WebServlet("/Login")
@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
 	private final String AGENTE_NO_EXISTE = "2";
 
 	@EJB
-	AgentesEJB agentesEJB;
+	AgentesEJBCliente agentesEJB;
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

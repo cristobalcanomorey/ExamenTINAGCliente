@@ -8,7 +8,7 @@ import aplicacion.modelo.pojo.Agente;
 
 @Stateless
 @LocalBean
-public class SesionesEJB {
+public class SesionesEJBCliente {
 
 	/**
 	 * Obtiene un agente de la sesión

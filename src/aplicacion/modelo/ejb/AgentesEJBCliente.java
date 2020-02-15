@@ -10,13 +10,13 @@ import aplicacion.modelo.pojo.Agente;
 
 @Singleton
 @LocalBean
-public class AgentesEJB {
+public class AgentesEJBCliente {
 
 	@EJB
 	ClienteRestAgentes clienteRestAgentes;
 
 	@EJB
-	SesionesEJB sesionesEJB;
+	SesionesEJBCliente sesionesEJB;
 
 	public Agente loginAgente(HttpSession session, String placa, String clave) {
 		Agente logueado = clienteRestAgentes.loginAgente(placa, clave);
