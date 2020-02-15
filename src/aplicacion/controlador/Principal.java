@@ -9,10 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import aplicacion.modelo.LogSingleton;
-import aplicacion.modelo.ejb.SesionesEJBCliente;
+import aplicacion.modelo.ejb.AgentesEJBCliente;
 import aplicacion.modelo.pojo.Agente;
 
 @WebServlet("/Principal")
@@ -23,18 +22,17 @@ public class Principal extends HttpServlet {
 	private final String AGENTE_NO_EXISTE = "2";
 
 	@EJB
-	SesionesEJBCliente sesionesEJB;
+	AgentesEJBCliente agentesEJB;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
 		LogSingleton log = LogSingleton.getInstance();
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Principal.jsp");
 
 		String err = request.getParameter("error");
 
-		Agente agente = sesionesEJB.agenteLogueado(session);
+		Agente agente = agentesEJB.getAgenteLogueado();
 
 		try {
 			if (agente != null) {

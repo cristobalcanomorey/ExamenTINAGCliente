@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
@@ -27,20 +26,23 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
 		LogSingleton log = LogSingleton.getInstance();
 		String placa = request.getParameter("placa");
 		String clave = request.getParameter("clave");
 
-		if (placa == null || clave == null) {
-			try {
+		try {
+			if (placa != null && clave != null) {
+				if (placa.equals("") || clave.equals("")) {
+					response.sendRedirect("Principal?error=" + FALTAN_DATOS);
+				}
+			} else {
 				response.sendRedirect("Principal?error=" + FALTAN_DATOS);
-			} catch (Exception e) {
-				log.getLoggerLogin().debug("Error en POST Login: ", e);
 			}
+		} catch (Exception e) {
+			log.getLoggerLogin().debug("Error en POST Login: ", e);
 		}
 
-		Agente agente = agentesEJB.loginAgente(session, placa, clave);
+		Agente agente = agentesEJB.loginAgente(placa, clave);
 		try {
 			if (agente != null) {
 				response.sendRedirect("Accidentes");

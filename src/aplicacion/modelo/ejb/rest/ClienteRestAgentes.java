@@ -12,23 +12,22 @@ import aplicacion.modelo.pojo.Agente;
 @LocalBean
 public class ClienteRestAgentes {
 
-	public Agente loginAgente(String placa, String clave) {
+	public void loginAgente(String placa, String clave) {
 		Client cliente = ClientBuilder.newClient();
-
 		WebTarget login = cliente.target("http://localhost:8080/SeguridadVial/Sesion/Login/" + placa + "/" + clave);
-
 		login.request().post(null);
+	}
 
+	public Agente agenteLogueado() {
+		Client cliente = ClientBuilder.newClient();
 		WebTarget logueado = cliente.target("http://localhost:8080/SeguridadVial/Sesion/Logueado");
-
-		return logueado.request().get(Agente.class);
+		Agente agente = logueado.request().get(Agente.class);
+		return agente;
 	}
 
 	public void logoutAgente() {
 		Client cliente = ClientBuilder.newClient();
-
 		WebTarget logout = cliente.target("http://localhost:8080/SeguridadVial/Sesion/Logout");
-
 		logout.request().get();
 	}
 

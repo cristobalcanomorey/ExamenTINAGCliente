@@ -30,7 +30,7 @@
 		<p>Placa de identificación:</p>
 		<input type="text" name="placa">
 		<p>Contraseña:</p>
-		<input type="text" name="clave">
+		<input type="password" name="clave">
 		<button type="submit">Login</button>
 	</form>
 	<%
