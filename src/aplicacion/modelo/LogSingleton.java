@@ -7,14 +7,12 @@ import aplicacion.controlador.Accidentes;
 import aplicacion.controlador.ActualizarAccidente;
 import aplicacion.controlador.CrearAccidente;
 import aplicacion.controlador.EliminarAccidente;
-import aplicacion.controlador.Login;
 import aplicacion.controlador.Logout;
 import aplicacion.controlador.Principal;
 
 public class LogSingleton {
 	private static final LogSingleton INSTANCE = new LogSingleton();
 	private Logger loggerAccidentes = LoggerFactory.getLogger(Accidentes.class);
-	private Logger loggerLogin = LoggerFactory.getLogger(Login.class);
 	private Logger loggerLogout = LoggerFactory.getLogger(Logout.class);
 	private Logger loggerActualizarAccidente = LoggerFactory.getLogger(ActualizarAccidente.class);
 	private Logger loggerCrearAccidente = LoggerFactory.getLogger(CrearAccidente.class);
@@ -71,14 +69,6 @@ public class LogSingleton {
 
 	public void setLoggerPrincipal(Logger loggerPrincipal) {
 		this.loggerPrincipal = loggerPrincipal;
-	}
-
-	public Logger getLoggerLogin() {
-		return loggerLogin;
-	}
-
-	public void setLoggerLogin(Logger loggerLogin) {
-		this.loggerLogin = loggerLogin;
 	}
 
 	public Logger getLoggerLogout() {

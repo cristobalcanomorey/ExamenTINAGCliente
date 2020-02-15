@@ -26,7 +26,7 @@
 	</ul>
 	<h1>Gestión This Is Not A Gameland</h1>
 	<p>Debes iniciar sesión para poder usar esta aplicación</p>
-	<form action="Login" method="POST">
+	<form action="Principal" method="POST">
 		<p>Placa de identificación:</p>
 		<input type="text" name="placa">
 		<p>Contraseña:</p>

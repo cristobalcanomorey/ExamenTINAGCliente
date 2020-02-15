@@ -52,4 +52,37 @@ public class Principal extends HttpServlet {
 		}
 	}
 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		LogSingleton log = LogSingleton.getInstance();
+		String placa = request.getParameter("placa");
+		String clave = request.getParameter("clave");
+
+		try {
+			if (placa != null && clave != null) {
+				if (placa.equals("") || clave.equals("")) {
+					response.sendRedirect("Principal?error=" + FALTAN_DATOS);
+				}
+			} else {
+				response.sendRedirect("Principal?error=" + FALTAN_DATOS);
+			}
+		} catch (Exception e) {
+			log.getLoggerPrincipal().debug("Error en POST Principal: ", e);
+		}
+
+		Agente agente = agentesEJB.loginAgente(placa, clave);
+
+		try {
+			if (agente != null) {
+				response.sendRedirect("Accidentes");
+			} else {
+				response.sendRedirect("Principal?error=" + AGENTE_NO_EXISTE);
+			}
+		} catch (Exception e) {
+			log.getLoggerPrincipal().debug("Error en POST Principal: ", e);
+		}
+
+	}
+
 }
