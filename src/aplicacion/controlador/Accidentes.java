@@ -1,6 +1,7 @@
 package aplicacion.controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AccidentesEJBCliente;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
+import aplicacion.modelo.pojo.AccidenteConDistrito;
 
 @WebServlet("/Accidentes")
 public class Accidentes extends HttpServlet {
@@ -57,10 +59,12 @@ public class Accidentes extends HttpServlet {
 //			if (agente == null || idDistrito == null) {
 //				response.sendRedirect("Principal");
 //			}
-
+			ArrayList<AccidenteConDistrito> accidentesConDistritos = accidentesEJBCliente
+					.getAccidentesConDistrito(idDistrito);
+			request.setAttribute("accidentes", accidentesConDistritos);
+			request.setAttribute("fechasYHoras", accidentesEJBCliente.getFechasYHoras(accidentesConDistritos));
 			request.setAttribute("distritos", accidentesEJBCliente.getDistritos());
 			request.setAttribute("idDistrito", idDistrito);
-			request.setAttribute("accidentes", accidentesEJBCliente.getAccidentesConDistrito(idDistrito));
 			rs.forward(request, response);
 		} catch (Exception e) {
 			log.getLoggerAccidentes().debug("Error en POST Accidentes: ", e);

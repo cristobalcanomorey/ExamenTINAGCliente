@@ -42,7 +42,8 @@ public class ActualizarAccidente extends HttpServlet {
 //			}
 			Accidente accidente = accidentesEJBCliente.getAccidente(id);
 			request.setAttribute("accidente", accidente);
-			request.setAttribute("fechaYHora", accidentesEJBCliente.getFechaYHora(accidente));
+			request.setAttribute("fechaYHora",
+					accidentesEJBCliente.getFechaYHora(accidente.getId(), accidente.getFecha(), accidente.getHora()));
 			request.setAttribute("distritos", accidentesEJBCliente.getDistritos());
 			request.setAttribute("tiposAccidentes", accidentesEJBCliente.getTiposAccidentes());
 			request.setAttribute("tiposSexos", accidentesEJBCliente.getTiposSexos());

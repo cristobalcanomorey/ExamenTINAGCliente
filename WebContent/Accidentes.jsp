@@ -1,10 +1,12 @@
-<%@page import="aplicacion.modelo.pojo.Distrito"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="aplicacion.modelo.pojo.FechaHora"%>
+<%@page import="aplicacion.modelo.pojo.Distrito"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="aplicacion.modelo.pojo.AccidenteConDistrito"%>
 <%!ArrayList<AccidenteConDistrito> accidentesConDistritos;%>
 <%!ArrayList<Distrito> distritos; %>
+<%!ArrayList<FechaHora> fechasYHoras; %>
 <%!String idDistrito; %>
 <!DOCTYPE html>
 <html>
@@ -45,6 +47,7 @@
 		<button type="submit">Obtener</button>
 	</form>
 	<%
+		fechasYHoras = (ArrayList<FechaHora>) request.getAttribute("fechasYHoras");
 		accidentesConDistritos = (ArrayList<AccidenteConDistrito>) request.getAttribute("accidentes");
 		if (accidentesConDistritos != null) {
 			if (!accidentesConDistritos.isEmpty()) {
@@ -55,8 +58,13 @@
 				out.print("</tr>");
 				for (AccidenteConDistrito aConDiS : accidentesConDistritos) {
 					out.print("<tr>");
-					out.print("<td>" + aConDiS.getFecha() + "</td>");
-					out.print("<td>" + aConDiS.getHora() + "</td>");
+					for(FechaHora fh: fechasYHoras){
+						if(aConDiS.getId().equals(fh.getIdAccidente())){
+							out.print("<td>" + fh.getFecha() + "</td>");
+							out.print("<td>" + fh.getHora() + "</td>");
+							break;
+						}
+					}
 					out.print("<td>" + aConDiS.getExpediente() + "</td>");
 					out.print("<td>" + aConDiS.getDistrito() + "</td>");
 					out.print("<td><a href='ActualizarAccidente?id=" + aConDiS.getId()

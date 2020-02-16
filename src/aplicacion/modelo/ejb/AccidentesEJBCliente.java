@@ -77,18 +77,18 @@ public class AccidentesEJBCliente {
 		return new SimpleDateFormat("kk:mm:ss").parse(hora);
 	}
 
-	public String fechaLegible(String fecha) throws ParseException {
-		return fechaAString(stringAFecha(fecha));
+	public FechaHora getFechaYHora(Integer id, Date f, Date h) {
+		String fecha = fechaAString(f);
+		String hora = horaAString(h);
+		return new FechaHora(id, fecha, hora);
 	}
 
-	public String horaLegible(String hora) throws ParseException {
-		return horaAString(stringAHora(hora));
-	}
-
-	public FechaHora getFechaYHora(Accidente accidente) {
-		String fecha = fechaAString(accidente.getFecha());
-		String hora = horaAString(accidente.getHora());
-		return new FechaHora(accidente.getId(), fecha, hora);
+	public ArrayList<FechaHora> getFechasYHoras(ArrayList<AccidenteConDistrito> accidentesConDistritos) {
+		ArrayList<FechaHora> fechasYHoras = new ArrayList<FechaHora>();
+		for (AccidenteConDistrito acd : accidentesConDistritos) {
+			fechasYHoras.add(getFechaYHora(acd.getId(), acd.getFecha(), acd.getHora()));
+		}
+		return fechasYHoras;
 	}
 
 }
