@@ -83,20 +83,21 @@ public class ActualizarAccidente extends HttpServlet {
 					Integer idTipoAccidente = Integer.valueOf(tipoAccidente);
 					Integer idTipoVehiculo = Integer.valueOf(tipoVehiculo);
 					Integer idTipoSexo = Integer.valueOf(tipoSexo);
+					Integer idMod = Integer.valueOf(id);
 
-					modificado = new Accidente(expediente, fechD, horaD, direccion, idDistrito, idTipoAccidente,
+					modificado = new Accidente(idMod, expediente, fechD, horaD, direccion, idDistrito, idTipoAccidente,
 							idTipoVehiculo, idTipoSexo);
 
 					accidentesEJBCliente.updateAccidente(modificado);
-					response.sendRedirect("CrearAccidente");
+					response.sendRedirect("Accidentes");
 				} catch (NumberFormatException | ParseException e) {
-					log.getLoggerCrearAccidente().debug("Error en POST Crear Accidente: ", e);
+					log.getLoggerActualizarAccidente().debug("Error en POST Actualizar Accidente: ", e);
 					response.sendRedirect("Principal");
 				}
 			}
 
 		} catch (Exception e) {
-			log.getLoggerActualizarAccidente().debug("Error en POST Eliminar Accidente: ", e);
+			log.getLoggerActualizarAccidente().debug("Error en POST Actualizar Accidente: ", e);
 		}
 
 	}

@@ -75,7 +75,7 @@ public class CrearAccidente extends HttpServlet {
 			} else {
 				Accidente nuevo = null;
 				try {
-					nuevo = new Accidente(expediente, accidentesEJBCliente.stringAFecha(fecha),
+					nuevo = new Accidente(null, expediente, accidentesEJBCliente.stringAFecha(fecha),
 							accidentesEJBCliente.stringAHora(hora), direccion, Integer.valueOf(distrito),
 							Integer.valueOf(tipoAccidente), Integer.valueOf(tipoVehiculo), Integer.valueOf(tipoSexo));
 				} catch (NumberFormatException | ParseException e) {

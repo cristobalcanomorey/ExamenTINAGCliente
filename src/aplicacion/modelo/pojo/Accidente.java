@@ -20,8 +20,9 @@ public class Accidente {
 
 	}
 
-	public Accidente(String expediente, Date fecha, Date hora, String direccion, Integer id_distrito,
+	public Accidente(Integer id, String expediente, Date fecha, Date hora, String direccion, Integer id_distrito,
 			Integer id_tipo_accidente, Integer id_tipo_vehiculo, Integer id_sexo) {
+		this.id = id;
 		this.expediente = expediente;
 		this.fecha = fecha;
 		this.hora = hora;
