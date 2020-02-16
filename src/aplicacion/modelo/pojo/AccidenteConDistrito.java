@@ -32,6 +32,14 @@ public class AccidenteConDistrito {
 		this.expediente = expediente;
 	}
 
+	public String getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(String distrito) {
+		this.distrito = distrito;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -46,14 +54,6 @@ public class AccidenteConDistrito {
 
 	public void setHora(Date hora) {
 		this.hora = hora;
-	}
-
-	public String getDistrito() {
-		return distrito;
-	}
-
-	public void setDistrito(String distrito) {
-		this.distrito = distrito;
 	}
 
 }

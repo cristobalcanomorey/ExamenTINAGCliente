@@ -1,6 +1,9 @@
 package aplicacion.modelo.ejb;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -21,8 +24,8 @@ public class AccidentesEJBCliente {
 	@EJB
 	ClienteRestAccidentes clienteRestAccidentes;
 
-	public ArrayList<AccidenteConDistrito> getAccidentesConDistrito() {
-		return clienteRestAccidentes.getAccidentesConDistrito();
+	public ArrayList<AccidenteConDistrito> getAccidentesConDistrito(String idDistrito) {
+		return clienteRestAccidentes.getAccidentesConDistrito(idDistrito);
 	}
 
 	public Accidente getAccidente(String id) {
@@ -51,6 +54,34 @@ public class AccidentesEJBCliente {
 
 	public void insertAccidente(Accidente nuevo) {
 		clienteRestAccidentes.insertAccidente(nuevo);
+	}
+
+	public void updateAccidente(Accidente modificado) {
+		clienteRestAccidentes.updateAccidente(modificado);
+	}
+
+	public String fechaAString(Date fecha) {
+		return new SimpleDateFormat("yyyy-MM-dd").format(fecha);
+	}
+
+	public String horaAString(Date hora) {
+		return new SimpleDateFormat("kk:mm:ss").format(hora);
+	}
+
+	public Date stringAFecha(String fecha) throws ParseException {
+		return new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
+	}
+
+	public Date stringAHora(String hora) throws ParseException {
+		return new SimpleDateFormat("kk:mm:ss").parse(hora);
+	}
+
+	public String fechaLegible(String fecha) throws ParseException {
+		return fechaAString(stringAFecha(fecha));
+	}
+
+	public String horaLegible(String hora) throws ParseException {
+		return horaAString(stringAHora(hora));
 	}
 
 }

@@ -1,13 +1,15 @@
 package aplicacion.modelo.pojo;
 
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Accidente {
 	private Integer id;
 	private String expediente;
-	private String fecha;
-	private String hora;
+	private Date fecha;
+	private Date hora;
 	private String direccion;
 	private Integer id_distrito;
 	private Integer id_tipo_accidente;
@@ -18,7 +20,7 @@ public class Accidente {
 
 	}
 
-	public Accidente(String expediente, String fecha, String hora, String direccion, Integer id_distrito,
+	public Accidente(String expediente, Date fecha, Date hora, String direccion, Integer id_distrito,
 			Integer id_tipo_accidente, Integer id_tipo_vehiculo, Integer id_sexo) {
 		this.expediente = expediente;
 		this.fecha = fecha;
@@ -86,19 +88,19 @@ public class Accidente {
 		this.id_sexo = idSexo;
 	}
 
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 
-	public String getHora() {
+	public Date getHora() {
 		return hora;
 	}
 
-	public void setHora(String hora) {
+	public void setHora(Date hora) {
 		this.hora = hora;
 	}
 

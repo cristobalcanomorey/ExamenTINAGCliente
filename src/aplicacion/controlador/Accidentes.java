@@ -36,6 +36,7 @@ public class Accidentes extends HttpServlet {
 //			if (agente == null) {
 //				response.sendRedirect("Principal");
 //			}
+			request.setAttribute("distritos", accidentesEJBCliente.getDistritos());
 			rs.forward(request, response);
 		} catch (Exception e) {
 			log.getLoggerAccidentes().debug("Error en GET Accidentes: ", e);
@@ -49,15 +50,20 @@ public class Accidentes extends HttpServlet {
 		LogSingleton log = LogSingleton.getInstance();
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Accidentes.jsp");
 
+		String idDistrito = request.getParameter("idDistrito");
+
 		try {
 //			Agente agente = agentesEJB.getAgenteLogueado();
-//			if (agente == null) {
+//			if (agente == null || idDistrito == null) {
 //				response.sendRedirect("Principal");
 //			}
-			request.setAttribute("accidentes", accidentesEJBCliente.getAccidentesConDistrito());
+
+			request.setAttribute("distritos", accidentesEJBCliente.getDistritos());
+			request.setAttribute("idDistrito", idDistrito);
+			request.setAttribute("accidentes", accidentesEJBCliente.getAccidentesConDistrito(idDistrito));
 			rs.forward(request, response);
 		} catch (Exception e) {
-			log.getLoggerAccidentes().debug("Error en GET Accidentes: ", e);
+			log.getLoggerAccidentes().debug("Error en POST Accidentes: ", e);
 		}
 	}
 

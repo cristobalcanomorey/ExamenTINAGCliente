@@ -1,6 +1,7 @@
 package aplicacion.controlador;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -74,13 +75,15 @@ public class CrearAccidente extends HttpServlet {
 			} else {
 				Accidente nuevo = null;
 				try {
-					nuevo = new Accidente(expediente, fecha, hora, direccion, Integer.valueOf(distrito),
+					nuevo = new Accidente(expediente, accidentesEJBCliente.stringAFecha(fecha),
+							accidentesEJBCliente.stringAHora(hora), direccion, Integer.valueOf(distrito),
 							Integer.valueOf(tipoAccidente), Integer.valueOf(tipoVehiculo), Integer.valueOf(tipoSexo));
-				} catch (NumberFormatException e) {
+				} catch (NumberFormatException | ParseException e) {
 					log.getLoggerCrearAccidente().debug("Error en POST Crear Accidente: ", e);
 					response.sendRedirect("Principal");
 				}
 				accidentesEJBCliente.insertAccidente(nuevo);
+				response.sendRedirect("CrearAccidente");
 			}
 
 		} catch (Exception e) {

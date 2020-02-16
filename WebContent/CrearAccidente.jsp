@@ -37,7 +37,7 @@
 		<p>Fecha:</p>
 		<input type="date" name="fecha" required>
 		<p>Hora:</p>
-		<input type="time" name="hora" required>
+		<input type="time" name="hora" step="1" required>
 		<p>Dirección:</p>
 		<input type="text" name="direccion" required>
 		
@@ -46,7 +46,7 @@
 			<%
 				for (Distrito dis : distritos) {
 					out.print("<option value='"+dis.getId()+"'>");
-					out.print(dis);
+					out.print(dis.getNombre());
 					out.print("</option>");
 				}
 			%>
@@ -56,8 +56,8 @@
 		<select name="tipoAccidente" required>
 			<%
 				for (TiposAccidente tac : tiposAccidentes) {
-					out.print("<option> value='"+tac.getId()+"'");
-					out.print(tac);
+					out.print("<option value='"+tac.getId()+"'>");
+					out.print(tac.getNombre());
 					out.print("</option>");
 				}
 			%>
@@ -68,7 +68,7 @@
 			<%
 				for (TiposSexo tsx : tiposSexos) {
 					out.print("<option value='"+tsx.getId()+"'>");
-					out.print(tsx);
+					out.print(tsx.getNombre());
 					out.print("</option>");
 				}
 			%>
@@ -79,7 +79,7 @@
 			<%
 				for (TiposVehiculo tvh : tiposVehiculos) {
 					out.print("<option value='"+tvh.getId()+"'>");
-					out.print(tvh);
+					out.print(tvh.getNombre());
 					out.print("</option>");
 				}
 			%>

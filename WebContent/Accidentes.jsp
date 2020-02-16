@@ -1,8 +1,11 @@
+<%@page import="aplicacion.modelo.pojo.Distrito"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="aplicacion.modelo.pojo.AccidenteConDistrito"%>
 <%!ArrayList<AccidenteConDistrito> accidentesConDistritos;%>
+<%!ArrayList<Distrito> distritos; %>
+<%!String idDistrito; %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,29 +22,47 @@
 	<h1>Gestión This Is Not A Gameland</h1>
 	<h3>Accidentes</h3>
 	<form action="Accidentes" method="POST">
-		Obtener todos registros de los accidentes
+		<p>Obtener todos registros de los accidentes de cada distrito</p>
+		<select name="idDistrito" required>
+			<%
+				distritos = (ArrayList<Distrito>) request.getAttribute("distritos");
+				idDistrito = (String) request.getAttribute("idDistrito");
+				for (Distrito dis : distritos) {
+					if(idDistrito != null){
+						if (dis.getId().equals(Integer.valueOf(idDistrito))) {
+							out.print("<option selected='selected' value='"+dis.getId()+"'>");
+						} else {
+							out.print("<option value='"+dis.getId()+"'>");
+						}	
+					} else{
+						out.print("<option value='"+dis.getId()+"'>");
+					}
+					out.print(dis.getNombre());
+					out.print("</option>");
+				}
+			%>
+		</select>
 		<button type="submit">Obtener</button>
 	</form>
 	<%
 		accidentesConDistritos = (ArrayList<AccidenteConDistrito>) request.getAttribute("accidentes");
 		if (accidentesConDistritos != null) {
-			out.print("<p class='advertencia'>Obteniendo accidentes... Esto puede tardar varios segundos</p>");
 			if (!accidentesConDistritos.isEmpty()) {
 				out.print("<table>");
 				out.print("<tbody>");
 				out.print("<tr>");
 				out.print("<th>Fecha</th><th>Hora</th><th>Expediente</th><th>Distrito</th><th></th><th></th>");
 				out.print("</tr>");
-				for (AccidenteConDistrito aConDi : accidentesConDistritos) {
+				for (AccidenteConDistrito aConDiS : accidentesConDistritos) {
 					out.print("<tr>");
-					out.print("<td>" + aConDi.getFecha() + "</td>");
-					out.print("<td>" + aConDi.getHora() + "</td>");
-					out.print("<td>" + aConDi.getExpediente() + "</td>");
-					out.print("<td>" + aConDi.getDistrito() + "</td>");
-					out.print("<td><a href='ActualizarAccidente?id=" + aConDi.getId()
+					out.print("<td>" + aConDiS.getFecha() + "</td>");
+					out.print("<td>" + aConDiS.getHora() + "</td>");
+					out.print("<td>" + aConDiS.getExpediente() + "</td>");
+					out.print("<td>" + aConDiS.getDistrito() + "</td>");
+					out.print("<td><a href='ActualizarAccidente?id=" + aConDiS.getId()
 							+ "'>Modificar registro</a></td>");
 					out.print(
-							"<td><a href='EliminarAccidente?id=" + aConDi.getId() + "'>Eliminar registro</a></td>");
+							"<td><a href='EliminarAccidente?id=" + aConDiS.getId() + "'>Eliminar registro</a></td>");
 					out.print("</tr>");
 				}
 				out.print("</tbody>");

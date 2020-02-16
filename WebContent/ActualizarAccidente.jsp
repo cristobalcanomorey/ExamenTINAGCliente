@@ -37,77 +37,76 @@
 		<p>Nº Expediente:</p>
 		<input type="text" name="expediente"
 			value="<%=accidente.getExpediente()%>" required>
-		<p>Fecha:</p>
-		<input type="date" name="fecha" value="<%=accidente.getFecha()%>"
-			required>
-		<p>Hora:</p>
-		<input type="time" name="hora" value="<%=accidente.getHora()%>"
-			required>
+		<p>Fecha: <%=accidente.getFecha()%></p>
+		<input type="date" name="fecha"  required>
+			
+		<p>Hora: <%=accidente.getHora()%></p>
+		<input type="time" name="hora" step="1" required>
+			
 		<p>Dirección:</p>
-		<input type="text" name="direccion"
-			value="<%=accidente.getDireccion()%>" required>
+		<input type="text" name="direccion" value="<%=accidente.getDireccion()%>" required>
 
 		<p>Distrito:</p>
 		<select name="distrito" required>
 			<%
 				for (Distrito dis : distritos) {
 					if (dis.getId().equals(accidente.getIdDistrito())) {
-						out.print("<option selected='selected'>");
+						out.print("<option selected='selected' value='"+dis.getId()+"'>");
 					} else {
-						out.print("<option>");
+						out.print("<option value='"+dis.getId()+"'>");
 					}
-					out.print(dis);
+					out.print(dis.getNombre());
 					out.print("</option>");
 				}
 			%>
 		</select>
 
 		<p>Tipo de accidente:</p>
-		<select name="tiposAccidente" required>
+		<select name="tipoAccidente" required>
 			<%
 				for (TiposAccidente tac : tiposAccidentes) {
 					if (tac.getId().equals(accidente.getIdTipoAccidente())) {
-						out.print("<option selected='selected'>");
+						out.print("<option selected='selected' value='"+tac.getId()+"'>");
 					} else {
-						out.print("<option>");
+						out.print("<option value='"+tac.getId()+"'>");
 					}
-					out.print(tac);
+					out.print(tac.getNombre());
 					out.print("</option>");
 				}
 			%>
 		</select>
 
 		<p>Sexo:</p>
-		<select name="tiposSexo" required>
+		<select name="tipoSexo" required>
 			<%
 				for (TiposSexo tsx : tiposSexos) {
 					if (tsx.getId().equals(accidente.getIdSexo())) {
-						out.print("<option selected='selected'>");
+						out.print("<option selected='selected' value='"+tsx.getId()+"'>");
 					} else {
-						out.print("<option>");
+						out.print("<option value='"+tsx.getId()+"'>");
 					}
-					out.print(tsx);
+					out.print(tsx.getNombre());
 					out.print("</option>");
 				}
 			%>
 		</select>
 
 		<p>Tipo de vehículo:</p>
-		<select name="tiposVehiculo" required>
+		<select name=tipoVehiculo required>
 			<%
 				for (TiposVehiculo tvh : tiposVehiculos) {
 					if (tvh.getId().equals(accidente.getIdTipoVehiculo())) {
-						out.print("<option selected='selected'>");
+						out.print("<option selected='selected' value='"+tvh.getId()+"'>");
 					} else {
-						out.print("<option>");
+						out.print("<option value='"+tvh.getId()+"'>");
 					}
-					out.print(tvh);
+					out.print(tvh.getNombre());
 					out.print("</option>");
 				}
 			%>
 		</select>
-
-		<button type="submit">Registrar</button>
+		<input type="hidden" name="id" value="<%= accidente.getId() %>">
+		<button type="submit">Modificar</button>
 	</form>
 	<div>
 		<p>Gestión de accidentes del ayuntamiento de Madrid.</p>

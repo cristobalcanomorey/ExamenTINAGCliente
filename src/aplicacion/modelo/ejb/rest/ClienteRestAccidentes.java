@@ -30,10 +30,11 @@ public class ClienteRestAccidentes {
 		return logueado.request().get(Accidente.class);
 	}
 
-	public ArrayList<AccidenteConDistrito> getAccidentesConDistrito() {
+	public ArrayList<AccidenteConDistrito> getAccidentesConDistrito(String idDistrito) {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget target = cliente.target("http://localhost:8080/SeguridadVial/Accidente/getAccidentesConDistritos");
+		WebTarget target = cliente.target(
+				"http://localhost:8080/SeguridadVial/Accidente/getAccidentesConDistritos?idDistrito=" + idDistrito);
 
 		return (ArrayList<AccidenteConDistrito>) target.request().get(new GenericType<List<AccidenteConDistrito>>() {
 		});
@@ -89,6 +90,14 @@ public class ClienteRestAccidentes {
 		WebTarget logueado = cliente.target("http://localhost:8080/SeguridadVial/Accidente/insertAccidente");
 
 		logueado.request().put(Entity.json(nuevo), Accidente.class);
+	}
+
+	public void updateAccidente(Accidente modificado) {
+		Client cliente = ClientBuilder.newClient();
+
+		WebTarget logueado = cliente.target("http://localhost:8080/SeguridadVial/Accidente/updateAccidente");
+
+		logueado.request().put(Entity.json(modificado), Accidente.class);
 	}
 
 }
