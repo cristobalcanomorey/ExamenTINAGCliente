@@ -40,7 +40,9 @@ public class ActualizarAccidente extends HttpServlet {
 //			if (agente == null || id == null) {
 //				response.sendRedirect("Principal");
 //			}
-			request.setAttribute("accidente", accidentesEJBCliente.getAccidente(id));
+			Accidente accidente = accidentesEJBCliente.getAccidente(id);
+			request.setAttribute("accidente", accidente);
+			request.setAttribute("fechaYHora", accidentesEJBCliente.getFechaYHora(accidente));
 			request.setAttribute("distritos", accidentesEJBCliente.getDistritos());
 			request.setAttribute("tiposAccidentes", accidentesEJBCliente.getTiposAccidentes());
 			request.setAttribute("tiposSexos", accidentesEJBCliente.getTiposSexos());

@@ -13,6 +13,7 @@ import aplicacion.modelo.ejb.rest.ClienteRestAccidentes;
 import aplicacion.modelo.pojo.Accidente;
 import aplicacion.modelo.pojo.AccidenteConDistrito;
 import aplicacion.modelo.pojo.Distrito;
+import aplicacion.modelo.pojo.FechaHora;
 import aplicacion.modelo.pojo.TiposAccidente;
 import aplicacion.modelo.pojo.TiposSexo;
 import aplicacion.modelo.pojo.TiposVehiculo;
@@ -82,6 +83,12 @@ public class AccidentesEJBCliente {
 
 	public String horaLegible(String hora) throws ParseException {
 		return horaAString(stringAHora(hora));
+	}
+
+	public FechaHora getFechaYHora(Accidente accidente) {
+		String fecha = fechaAString(accidente.getFecha());
+		String hora = horaAString(accidente.getHora());
+		return new FechaHora(accidente.getId(), fecha, hora);
 	}
 
 }
