@@ -1,15 +1,13 @@
 package aplicacion.modelo.pojo;
 
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Accidente {
 	private Integer id;
 	private String expediente;
-	private Date fecha;
-	private Date hora;
+	private String fecha;
+	private String hora;
 	private String direccion;
 	private Integer id_distrito;
 	private Integer id_tipo_accidente;
@@ -18,6 +16,18 @@ public class Accidente {
 
 	public Accidente() {
 
+	}
+
+	public Accidente(String expediente, String fecha, String hora, String direccion, Integer id_distrito,
+			Integer id_tipo_accidente, Integer id_tipo_vehiculo, Integer id_sexo) {
+		this.expediente = expediente;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.direccion = direccion;
+		this.id_distrito = id_distrito;
+		this.id_tipo_accidente = id_tipo_accidente;
+		this.id_tipo_vehiculo = id_tipo_vehiculo;
+		this.id_sexo = id_sexo;
 	}
 
 	public Integer getId() {
@@ -34,22 +44,6 @@ public class Accidente {
 
 	public void setExpediente(String expediente) {
 		this.expediente = expediente;
-	}
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-	public Date getHora() {
-		return hora;
-	}
-
-	public void setHora(Date hora) {
-		this.hora = hora;
 	}
 
 	public String getDireccion() {
@@ -90,6 +84,22 @@ public class Accidente {
 
 	public void setIdSexo(Integer idSexo) {
 		this.id_sexo = idSexo;
+	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getHora() {
+		return hora;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 
 }

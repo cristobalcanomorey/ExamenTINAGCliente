@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="aplicacion.modelo.pojo.Accidente"%>
+<%!Accidente accidente; %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,20 +24,20 @@
 		</li>
 	</ul>
 	<h1>Gestión This Is Not A Gameland</h1>
-	<p>Debes iniciar sesión para poder usar esta aplicación</p>
-	<form action="Principal" method="POST">
-		<p>Placa de identificación:</p>
-		<input type="text" name="placa">
-		<p>Contraseña:</p>
-		<input type="password" name="clave">
-		<button type="submit">Login</button>
-	</form>
 	<%
-		String error = (String) request.getAttribute("error");
-		if(error != null){
-			out.print("<p>"+error+"</p>");
+		accidente = (Accidente) request.getAttribute("accidente");
+		if(accidente != null){
+			out.print("<h3>¿Seguro que quieres eliminar el expediente "+accidente.getExpediente()+"?</h3>");
 		}
 	%>
+	<form action="EliminarAccidente" method="POST">
+		<%
+			if(accidente != null){
+				out.print("<input type='hidden' name='id' value='"+accidente.getId()+"'>");
+			}
+		%>
+		<button type="submit">Eliminar</button>
+	</form>
 	<div>
 		<p>Gestión de accidentes del ayuntamiento de Madrid.</p>
 	</div>
