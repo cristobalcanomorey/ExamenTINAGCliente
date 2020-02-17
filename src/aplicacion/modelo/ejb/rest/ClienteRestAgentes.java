@@ -12,10 +12,14 @@ import aplicacion.modelo.pojo.Agente;
 @LocalBean
 public class ClienteRestAgentes {
 
-	public void loginAgente(String placa, String clave) {
+	private static final String TOKEN = "patata23";
+
+	private static final String URL = "http://localhost:8080/SeguridadVial/Agentes/";
+
+	public Agente validarAgente(String placa, String clave) {
 		Client cliente = ClientBuilder.newClient();
-		WebTarget login = cliente.target("http://localhost:8080/SeguridadVial/Sesion/Login/" + placa + "/" + clave);
-		login.request().post(null);
+		WebTarget login = cliente.target(URL + "Validar/" + TOKEN + "/" + placa + "/" + clave);
+		return login.request().get(Agente.class);
 	}
 
 	public Agente agenteLogueado() {

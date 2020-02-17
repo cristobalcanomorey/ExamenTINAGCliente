@@ -22,6 +22,8 @@ import aplicacion.modelo.pojo.TiposVehiculo;
 @LocalBean
 public class ClienteRestAccidentes {
 
+	private static final String TOKEN = "patata23";
+
 	public Accidente getAccidente(String id) {
 		Client cliente = ClientBuilder.newClient();
 
