@@ -23,11 +23,12 @@ import aplicacion.modelo.pojo.TiposVehiculo;
 public class ClienteRestAccidentes {
 
 	private static final String TOKEN = "patata23";
+	private static final String URL = "http://localhost:8080/SeguridadVial/Accidente/";
 
 	public Accidente getAccidente(String id) {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget logueado = cliente.target("http://localhost:8080/SeguridadVial/Accidente/getAccidente?id=" + id);
+		WebTarget logueado = cliente.target(URL + "getAccidente/" + TOKEN + "?id=" + id);
 
 		return logueado.request().get(Accidente.class);
 	}
@@ -35,8 +36,7 @@ public class ClienteRestAccidentes {
 	public ArrayList<AccidenteConDistrito> getAccidentesConDistrito(String idDistrito) {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget target = cliente.target(
-				"http://localhost:8080/SeguridadVial/Accidente/getAccidentesConDistritos?idDistrito=" + idDistrito);
+		WebTarget target = cliente.target(URL + "getAccidentesConDistritos/" + TOKEN + "?idDistrito=" + idDistrito);
 
 		return (ArrayList<AccidenteConDistrito>) target.request().get(new GenericType<List<AccidenteConDistrito>>() {
 		});
@@ -45,7 +45,7 @@ public class ClienteRestAccidentes {
 	public void borraAccidente(String id) {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget logueado = cliente.target("http://localhost:8080/SeguridadVial/Accidente/borraAccidente/" + id);
+		WebTarget logueado = cliente.target(URL + "borraAccidente/" + TOKEN + "/" + id);
 
 		logueado.request().delete();
 	}
@@ -53,7 +53,7 @@ public class ClienteRestAccidentes {
 	public ArrayList<Distrito> getDistritos() {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget target = cliente.target("http://localhost:8080/SeguridadVial/Accidente/getDistritos");
+		WebTarget target = cliente.target(URL + "getDistritos/" + TOKEN);
 
 		return (ArrayList<Distrito>) target.request().get(new GenericType<List<Distrito>>() {
 		});
@@ -62,7 +62,7 @@ public class ClienteRestAccidentes {
 	public ArrayList<TiposAccidente> getTiposAccidentes() {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget target = cliente.target("http://localhost:8080/SeguridadVial/Accidente/getTiposAccidentes");
+		WebTarget target = cliente.target(URL + "getTiposAccidentes/" + TOKEN);
 
 		return (ArrayList<TiposAccidente>) target.request().get(new GenericType<List<TiposAccidente>>() {
 		});
@@ -71,7 +71,7 @@ public class ClienteRestAccidentes {
 	public ArrayList<TiposSexo> getTiposSexos() {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget target = cliente.target("http://localhost:8080/SeguridadVial/Accidente/getTiposSexos");
+		WebTarget target = cliente.target(URL + "getTiposSexos/" + TOKEN);
 
 		return (ArrayList<TiposSexo>) target.request().get(new GenericType<List<TiposSexo>>() {
 		});
@@ -80,7 +80,7 @@ public class ClienteRestAccidentes {
 	public ArrayList<TiposVehiculo> getTiposVehiculos() {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget target = cliente.target("http://localhost:8080/SeguridadVial/Accidente/getTiposVehiculos");
+		WebTarget target = cliente.target(URL + "getTiposVehiculos/" + TOKEN);
 
 		return (ArrayList<TiposVehiculo>) target.request().get(new GenericType<List<TiposVehiculo>>() {
 		});
@@ -89,7 +89,7 @@ public class ClienteRestAccidentes {
 	public void insertAccidente(Accidente nuevo) {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget logueado = cliente.target("http://localhost:8080/SeguridadVial/Accidente/insertAccidente");
+		WebTarget logueado = cliente.target(URL + "insertAccidente/" + TOKEN);
 
 		logueado.request().put(Entity.json(nuevo), Accidente.class);
 	}
@@ -97,7 +97,7 @@ public class ClienteRestAccidentes {
 	public void updateAccidente(Accidente modificado) {
 		Client cliente = ClientBuilder.newClient();
 
-		WebTarget logueado = cliente.target("http://localhost:8080/SeguridadVial/Accidente/updateAccidente");
+		WebTarget logueado = cliente.target(URL + "updateAccidente/" + TOKEN);
 
 		logueado.request().put(Entity.json(modificado), Accidente.class);
 	}

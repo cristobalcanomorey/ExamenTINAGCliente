@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
+import aplicacion.modelo.ejb.SesionesEJB;
 import aplicacion.modelo.pojo.Agente;
 
 @WebServlet("/Principal")
@@ -24,6 +25,9 @@ public class Principal extends HttpServlet {
 	@EJB
 	AgentesEJBCliente agentesEJB;
 
+	@EJB
+	SesionesEJB sesionesEJB;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -32,7 +36,7 @@ public class Principal extends HttpServlet {
 
 		String err = request.getParameter("error");
 
-		Agente agente = agentesEJB.getAgenteLogueado();
+		Agente agente = sesionesEJB.agenteLogueado(request.getSession(false));
 
 		try {
 			if (agente != null) {
@@ -71,10 +75,10 @@ public class Principal extends HttpServlet {
 			log.getLoggerPrincipal().debug("Error en POST Principal: ", e);
 		}
 
-		Agente agente = agentesEJB.loginAgente(placa, clave);
-
+		Agente agente = agentesEJB.validarAgente(placa, clave);
 		try {
 			if (agente != null) {
+				sesionesEJB.loginAgente(request.getSession(true), agente);
 				response.sendRedirect("Accidentes");
 			} else {
 				response.sendRedirect("Principal?error=" + AGENTE_NO_EXISTE);

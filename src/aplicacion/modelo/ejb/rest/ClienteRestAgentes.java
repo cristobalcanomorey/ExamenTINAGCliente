@@ -24,14 +24,14 @@ public class ClienteRestAgentes {
 
 	public Agente agenteLogueado() {
 		Client cliente = ClientBuilder.newClient();
-		WebTarget logueado = cliente.target("http://localhost:8080/SeguridadVial/Sesion/Logueado");
+		WebTarget logueado = cliente.target(URL + "Logueado");
 		Agente agente = logueado.request().get(Agente.class);
 		return agente;
 	}
 
 	public void logoutAgente() {
 		Client cliente = ClientBuilder.newClient();
-		WebTarget logout = cliente.target("http://localhost:8080/SeguridadVial/Sesion/Logout");
+		WebTarget logout = cliente.target(URL + "Logout");
 		logout.request().get();
 	}
 

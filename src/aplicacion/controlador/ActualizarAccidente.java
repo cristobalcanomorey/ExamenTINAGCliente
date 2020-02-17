@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AccidentesEJBCliente;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
+import aplicacion.modelo.ejb.SesionesEJB;
 import aplicacion.modelo.pojo.Accidente;
+import aplicacion.modelo.pojo.Agente;
 
 @WebServlet("/ActualizarAccidente")
 public class ActualizarAccidente extends HttpServlet {
@@ -27,6 +29,9 @@ public class ActualizarAccidente extends HttpServlet {
 	@EJB
 	AccidentesEJBCliente accidentesEJBCliente;
 
+	@EJB
+	SesionesEJB sesionesEJB;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -36,10 +41,10 @@ public class ActualizarAccidente extends HttpServlet {
 		String id = request.getParameter("id");
 
 		try {
-//			Agente agente = agentesEJB.getAgenteLogueado();
-//			if (agente == null || id == null) {
-//				response.sendRedirect("Principal");
-//			}
+			Agente agente = sesionesEJB.agenteLogueado(request.getSession(false));
+			if (agente == null || id == null) {
+				response.sendRedirect("Principal");
+			}
 			Accidente accidente = accidentesEJBCliente.getAccidente(id);
 			request.setAttribute("accidente", accidente);
 			request.setAttribute("fechaYHora",
@@ -70,10 +75,10 @@ public class ActualizarAccidente extends HttpServlet {
 		String tipoSexo = request.getParameter("tipoSexo");
 		String tipoVehiculo = request.getParameter("tipoVehiculo");
 		try {
-//			Agente agente = agentesEJB.getAgenteLogueado();
-//			if (agente == null || id == null) {
-//				response.sendRedirect("Principal");
-//			}
+			Agente agente = sesionesEJB.agenteLogueado(request.getSession(false));
+			if (agente == null) {
+				response.sendRedirect("Principal");
+			}
 			if (id == null || expediente == null || fecha == null || hora == null || direccion == null
 					|| distrito == null || tipoAccidente == null || tipoSexo == null || tipoVehiculo == null) {
 				response.sendRedirect("Principal");

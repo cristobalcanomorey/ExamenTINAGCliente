@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AccidentesEJBCliente;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
+import aplicacion.modelo.ejb.SesionesEJB;
 import aplicacion.modelo.pojo.AccidenteConDistrito;
+import aplicacion.modelo.pojo.Agente;
 
 @WebServlet("/Accidentes")
 public class Accidentes extends HttpServlet {
@@ -26,6 +28,9 @@ public class Accidentes extends HttpServlet {
 	@EJB
 	AccidentesEJBCliente accidentesEJBCliente;
 
+	@EJB
+	SesionesEJB sesionesEJB;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -34,10 +39,10 @@ public class Accidentes extends HttpServlet {
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/Accidentes.jsp");
 
 		try {
-//			Agente agente = agentesEJB.getAgenteLogueado();
-//			if (agente == null) {
-//				response.sendRedirect("Principal");
-//			}
+			Agente agente = sesionesEJB.agenteLogueado(request.getSession(false));
+			if (agente == null) {
+				response.sendRedirect("Principal");
+			}
 			request.setAttribute("distritos", accidentesEJBCliente.getDistritos());
 			rs.forward(request, response);
 		} catch (Exception e) {
@@ -55,10 +60,10 @@ public class Accidentes extends HttpServlet {
 		String idDistrito = request.getParameter("idDistrito");
 
 		try {
-//			Agente agente = agentesEJB.getAgenteLogueado();
-//			if (agente == null || idDistrito == null) {
-//				response.sendRedirect("Principal");
-//			}
+			Agente agente = sesionesEJB.agenteLogueado(request.getSession(false));
+			if (agente == null || idDistrito == null) {
+				response.sendRedirect("Principal");
+			}
 			ArrayList<AccidenteConDistrito> accidentesConDistritos = accidentesEJBCliente
 					.getAccidentesConDistrito(idDistrito);
 			request.setAttribute("accidentes", accidentesConDistritos);

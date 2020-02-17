@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
+import aplicacion.modelo.ejb.SesionesEJB;
 
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
@@ -19,11 +20,14 @@ public class Logout extends HttpServlet {
 	@EJB
 	AgentesEJBCliente agentesEJB;
 
+	@EJB
+	SesionesEJB sesionesEJB;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		LogSingleton log = LogSingleton.getInstance();
-		agentesEJB.logoutAgente();
+		sesionesEJB.logout(request.getSession(false));
 		try {
 			response.sendRedirect("Principal");
 		} catch (Exception e) {

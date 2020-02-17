@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AccidentesEJBCliente;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
+import aplicacion.modelo.ejb.SesionesEJB;
 import aplicacion.modelo.pojo.Accidente;
+import aplicacion.modelo.pojo.Agente;
 
 @WebServlet("/CrearAccidente")
 public class CrearAccidente extends HttpServlet {
@@ -26,6 +28,9 @@ public class CrearAccidente extends HttpServlet {
 	@EJB
 	AccidentesEJBCliente accidentesEJBCliente;
 
+	@EJB
+	SesionesEJB sesionesEJB;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -34,10 +39,10 @@ public class CrearAccidente extends HttpServlet {
 		RequestDispatcher rs = getServletContext().getRequestDispatcher("/CrearAccidente.jsp");
 
 		try {
-//			Agente agente = agentesEJB.getAgenteLogueado();
-//			if (agente == null) {
-//				response.sendRedirect("Principal");
-//			}
+			Agente agente = sesionesEJB.agenteLogueado(request.getSession(false));
+			if (agente == null) {
+				response.sendRedirect("Principal");
+			}
 			request.setAttribute("distritos", accidentesEJBCliente.getDistritos());
 			request.setAttribute("tiposAccidentes", accidentesEJBCliente.getTiposAccidentes());
 			request.setAttribute("tiposSexos", accidentesEJBCliente.getTiposSexos());
@@ -65,10 +70,10 @@ public class CrearAccidente extends HttpServlet {
 		String tipoVehiculo = request.getParameter("tipoVehiculo");
 
 		try {
-//			Agente agente = agentesEJB.getAgenteLogueado();
-//			if (agente == null) {
-//				response.sendRedirect("Principal");
-//			}
+			Agente agente = sesionesEJB.agenteLogueado(request.getSession(false));
+			if (agente == null) {
+				response.sendRedirect("Principal");
+			}
 			if (expediente == null || fecha == null || hora == null || direccion == null || distrito == null
 					|| tipoAccidente == null || tipoSexo == null || tipoVehiculo == null) {
 				response.sendRedirect("Principal");

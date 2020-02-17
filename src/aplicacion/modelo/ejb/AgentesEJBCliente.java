@@ -14,17 +14,9 @@ public class AgentesEJBCliente {
 	@EJB
 	ClienteRestAgentes clienteRestAgentes;
 
-	public Agente loginAgente(String placa, String clave) {
-		clienteRestAgentes.loginAgente(placa, clave);
+	public Agente validarAgente(String placa, String clave) {
+		clienteRestAgentes.validarAgente(placa, clave);
 		return clienteRestAgentes.agenteLogueado();
-	}
-
-	public Agente getAgenteLogueado() {
-		return clienteRestAgentes.agenteLogueado();
-	}
-
-	public void logoutAgente() {
-		clienteRestAgentes.logoutAgente();
 	}
 
 }
