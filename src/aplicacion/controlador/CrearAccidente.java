@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AccidentesEJBCliente;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
-import aplicacion.modelo.ejb.SesionesEJB;
+import aplicacion.modelo.ejb.SesionesEJBCliente;
 import aplicacion.modelo.pojo.Accidente;
 import aplicacion.modelo.pojo.Agente;
 
@@ -29,7 +29,7 @@ public class CrearAccidente extends HttpServlet {
 	AccidentesEJBCliente accidentesEJBCliente;
 
 	@EJB
-	SesionesEJB sesionesEJB;
+	SesionesEJBCliente sesionesEJB;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

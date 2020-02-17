@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
-import aplicacion.modelo.ejb.SesionesEJB;
+import aplicacion.modelo.ejb.SesionesEJBCliente;
 
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
@@ -21,7 +21,7 @@ public class Logout extends HttpServlet {
 	AgentesEJBCliente agentesEJB;
 
 	@EJB
-	SesionesEJB sesionesEJB;
+	SesionesEJBCliente sesionesEJB;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
