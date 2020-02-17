@@ -15,8 +15,7 @@ public class AgentesEJBCliente {
 	ClienteRestAgentes clienteRestAgentes;
 
 	public Agente validarAgente(String placa, String clave) {
-		clienteRestAgentes.validarAgente(placa, clave);
-		return clienteRestAgentes.agenteLogueado();
+		return clienteRestAgentes.validarAgente(placa, clave);
 	}
 
 }
