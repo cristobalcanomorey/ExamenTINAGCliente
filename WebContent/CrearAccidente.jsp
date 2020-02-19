@@ -44,6 +44,7 @@
 		<p>Distrito:</p>
 		<select name="distrito" required>
 			<%
+			//Muestra las opciones de los distritos
 				for (Distrito dis : distritos) {
 					out.print("<option value='"+dis.getId()+"'>");
 					out.print(dis.getNombre());
@@ -55,6 +56,7 @@
 		<p>Tipo de accidente:</p>
 		<select name="tipoAccidente" required>
 			<%
+			//Muestra las opciones de los tipos de accidente
 				for (TiposAccidente tac : tiposAccidentes) {
 					out.print("<option value='"+tac.getId()+"'>");
 					out.print(tac.getNombre());
@@ -66,6 +68,7 @@
 		<p>Sexo:</p>
 		<select name="tipoSexo" required>
 			<%
+			//Muestra las opciones de los tipos de sexo
 				for (TiposSexo tsx : tiposSexos) {
 					out.print("<option value='"+tsx.getId()+"'>");
 					out.print(tsx.getNombre());
@@ -77,6 +80,7 @@
 		<p>Tipo de vehículo:</p>
 		<select name="tipoVehiculo" required>
 			<%
+			//Muestra las opciones de los tipos de vehículos
 				for (TiposVehiculo tvh : tiposVehiculos) {
 					out.print("<option value='"+tvh.getId()+"'>");
 					out.print(tvh.getNombre());

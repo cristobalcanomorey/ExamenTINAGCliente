@@ -18,6 +18,13 @@ import aplicacion.modelo.ejb.SesionesEJBCliente;
 import aplicacion.modelo.pojo.Accidente;
 import aplicacion.modelo.pojo.Agente;
 
+/***
+ * Permite insertar los datos de un accidente si el agente está logueado, si no
+ * lo redirige a la página principal
+ * 
+ * @author tofol
+ *
+ */
 @WebServlet("/CrearAccidente")
 public class CrearAccidente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +38,9 @@ public class CrearAccidente extends HttpServlet {
 	@EJB
 	SesionesEJBCliente sesionesEJB;
 
+	/***
+	 * Muestra la página de insertar accidentes
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -54,6 +64,10 @@ public class CrearAccidente extends HttpServlet {
 
 	}
 
+	/***
+	 * Si obtiene todos los datos necesarios de los parametros inserta los datos del
+	 * accidente
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

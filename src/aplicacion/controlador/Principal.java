@@ -15,6 +15,10 @@ import aplicacion.modelo.ejb.AgentesEJBCliente;
 import aplicacion.modelo.ejb.SesionesEJBCliente;
 import aplicacion.modelo.pojo.Agente;
 
+/***
+ * Permite iniciar sesión si no está logueado, si ya lo está lo redirige a
+ * Accidentes
+ */
 @WebServlet("/Principal")
 public class Principal extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,6 +32,9 @@ public class Principal extends HttpServlet {
 	@EJB
 	SesionesEJBCliente sesionesEJB;
 
+	/***
+	 * Muestra la página de login y los errores que el agente haya podido cometer
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -56,6 +63,10 @@ public class Principal extends HttpServlet {
 		}
 	}
 
+	/***
+	 * Si obtiene todos los datos necesarios de los parametros inicia la sesión del
+	 * agente
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

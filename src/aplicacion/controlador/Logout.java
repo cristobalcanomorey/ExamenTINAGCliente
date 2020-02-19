@@ -13,6 +13,12 @@ import aplicacion.modelo.LogSingleton;
 import aplicacion.modelo.ejb.AgentesEJBCliente;
 import aplicacion.modelo.ejb.SesionesEJBCliente;
 
+/***
+ * Cierra la sesión
+ * 
+ * @author tofol
+ *
+ */
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +29,9 @@ public class Logout extends HttpServlet {
 	@EJB
 	SesionesEJBCliente sesionesEJB;
 
+	/***
+	 * Cierra la sesión del agente
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

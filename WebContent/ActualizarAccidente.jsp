@@ -35,6 +35,7 @@
 		tiposAccidentes = (ArrayList<TiposAccidente>) request.getAttribute("tiposAccidentes");
 		tiposSexos = (ArrayList<TiposSexo>) request.getAttribute("tiposSexos");
 		tiposVehiculos = (ArrayList<TiposVehiculo>) request.getAttribute("tiposVehiculos");
+		//Pinta los valores por defecto de los input
 	%>
 	<form action="ActualizarAccidente" method="POST">
 		<p>Nº Expediente:</p>
@@ -52,6 +53,7 @@
 		<p>Distrito:</p>
 		<select name="distrito" required>
 			<%
+			//Muestra las opciones de los distritos y el distrito seleccionado
 				for (Distrito dis : distritos) {
 					if (dis.getId().equals(accidente.getIdDistrito())) {
 						out.print("<option selected='selected' value='"+dis.getId()+"'>");
@@ -67,6 +69,7 @@
 		<p>Tipo de accidente:</p>
 		<select name="tipoAccidente" required>
 			<%
+			//Muestra las opciones de los tipos de accidentes y el tipo de accidente seleccionado
 				for (TiposAccidente tac : tiposAccidentes) {
 					if (tac.getId().equals(accidente.getIdTipoAccidente())) {
 						out.print("<option selected='selected' value='"+tac.getId()+"'>");
@@ -82,6 +85,7 @@
 		<p>Sexo:</p>
 		<select name="tipoSexo" required>
 			<%
+			//Muestra las opciones de los tipos de sexos y el tipo de sexo seleccionado
 				for (TiposSexo tsx : tiposSexos) {
 					if (tsx.getId().equals(accidente.getIdSexo())) {
 						out.print("<option selected='selected' value='"+tsx.getId()+"'>");
@@ -97,6 +101,7 @@
 		<p>Tipo de vehículo:</p>
 		<select name=tipoVehiculo required>
 			<%
+			//Muestra las opciones de los tipos de vehículos y el tipo de vehículos seleccionado
 				for (TiposVehiculo tvh : tiposVehiculos) {
 					if (tvh.getId().equals(accidente.getIdTipoVehiculo())) {
 						out.print("<option selected='selected' value='"+tvh.getId()+"'>");

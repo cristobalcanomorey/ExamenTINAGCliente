@@ -1,5 +1,11 @@
 package aplicacion.modelo.pojo;
 
+/***
+ * Pojo con la fecha y hora de tipo string de un accidente
+ * 
+ * @author tofol
+ *
+ */
 public class FechaHora {
 
 	private Integer idAccidente;

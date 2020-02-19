@@ -16,6 +16,10 @@ import aplicacion.modelo.ejb.AgentesEJBCliente;
 import aplicacion.modelo.ejb.SesionesEJBCliente;
 import aplicacion.modelo.pojo.Agente;
 
+/***
+ * Permite eliminar un accidente si el agente está logueado, si no lo redirige a
+ * la página principal
+ */
 @WebServlet("/EliminarAccidente")
 public class EliminarAccidente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,6 +33,9 @@ public class EliminarAccidente extends HttpServlet {
 	@EJB
 	SesionesEJBCliente sesionesEJB;
 
+	/***
+	 * Muestra la página de eliminar accidentes
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -50,6 +57,9 @@ public class EliminarAccidente extends HttpServlet {
 
 	}
 
+	/***
+	 * Si obtiene todos los datos necesarios de los parametros elimina el accidente
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

@@ -6,6 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import aplicacion.modelo.pojo.Agente;
 
+/***
+ * Lógica de negocio para las sesiónes
+ * 
+ * @author tofol
+ *
+ */
 @Stateless
 @LocalBean
 public class SesionesEJBCliente {
@@ -24,12 +30,23 @@ public class SesionesEJBCliente {
 		return agente;
 	}
 
+	/***
+	 * Guarda una sesión para el agente
+	 * 
+	 * @param session Nueva sesión
+	 * @param agente  Agente a loguear
+	 */
 	public void loginAgente(HttpSession session, Agente agente) {
 		if (session != null) {
 			session.setAttribute("agente", agente);
 		}
 	}
 
+	/***
+	 * Cierra la sesión
+	 * 
+	 * @param session sesión a cerrar
+	 */
 	public void logout(HttpSession session) {
 		if (session != null) {
 			session.invalidate();

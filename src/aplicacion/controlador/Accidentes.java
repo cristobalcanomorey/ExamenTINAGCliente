@@ -18,6 +18,13 @@ import aplicacion.modelo.ejb.SesionesEJBCliente;
 import aplicacion.modelo.pojo.AccidenteConDistrito;
 import aplicacion.modelo.pojo.Agente;
 
+/***
+ * Muestra los registros de todos los accidentes de un distrito si el agente
+ * está logueado, si no lo redirige a la página principal
+ * 
+ * @author tofol
+ *
+ */
 @WebServlet("/Accidentes")
 public class Accidentes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +38,9 @@ public class Accidentes extends HttpServlet {
 	@EJB
 	SesionesEJBCliente sesionesEJB;
 
+	/***
+	 * Muestra la página de accidentes
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -51,6 +61,10 @@ public class Accidentes extends HttpServlet {
 
 	}
 
+	/***
+	 * Si obtiene todos los datos necesarios de los parametros pinta los accidentes
+	 * del distrito
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

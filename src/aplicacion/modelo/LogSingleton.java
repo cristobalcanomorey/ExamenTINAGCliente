@@ -10,6 +10,12 @@ import aplicacion.controlador.EliminarAccidente;
 import aplicacion.controlador.Logout;
 import aplicacion.controlador.Principal;
 
+/***
+ * Pojo Singleton para loguear errores y otros mensajes
+ * 
+ * @author tofol
+ *
+ */
 public class LogSingleton {
 	private static final LogSingleton INSTANCE = new LogSingleton();
 	private Logger loggerAccidentes = LoggerFactory.getLogger(Accidentes.class);

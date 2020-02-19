@@ -2,6 +2,12 @@ package aplicacion.modelo.pojo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/***
+ * Pojo con los datos de un agente
+ * 
+ * @author tofol
+ *
+ */
 @XmlRootElement
 public class Agente {
 

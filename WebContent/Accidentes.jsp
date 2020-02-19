@@ -29,6 +29,7 @@
 			<%
 				distritos = (ArrayList<Distrito>) request.getAttribute("distritos");
 				idDistrito = (String) request.getAttribute("idDistrito");
+				//Muestra las opciones de los distritos y el distrito seleccionado
 				for (Distrito dis : distritos) {
 					if(idDistrito != null){
 						if (dis.getId().equals(Integer.valueOf(idDistrito))) {
@@ -49,6 +50,7 @@
 	<%
 		fechasYHoras = (ArrayList<FechaHora>) request.getAttribute("fechasYHoras");
 		accidentesConDistritos = (ArrayList<AccidenteConDistrito>) request.getAttribute("accidentes");
+		//Crea la tabla con los datos obtenidos
 		if (accidentesConDistritos != null) {
 			if (!accidentesConDistritos.isEmpty()) {
 				out.print("<table>");

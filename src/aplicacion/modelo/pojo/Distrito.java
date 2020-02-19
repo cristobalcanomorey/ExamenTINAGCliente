@@ -2,6 +2,12 @@ package aplicacion.modelo.pojo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/***
+ * Pojo con los datos de un distrito
+ * 
+ * @author tofol
+ *
+ */
 @XmlRootElement
 public class Distrito {
 	private Integer id;

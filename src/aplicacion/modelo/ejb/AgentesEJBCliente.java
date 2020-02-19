@@ -14,6 +14,13 @@ public class AgentesEJBCliente {
 	@EJB
 	ClienteRestAgentes clienteRestAgentes;
 
+	/***
+	 * Obtiene el agente que coincide con esta placa y clave
+	 * 
+	 * @param placa Placa del agente
+	 * @param clave Contraseña del agente
+	 * @return Agente con esa placa y clave o null
+	 */
 	public Agente validarAgente(String placa, String clave) {
 		return clienteRestAgentes.validarAgente(placa, clave);
 	}

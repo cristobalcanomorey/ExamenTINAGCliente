@@ -4,6 +4,12 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/***
+ * Pojo con los datos de un accidente
+ * 
+ * @author tofol
+ *
+ */
 @XmlRootElement
 public class Accidente {
 	private Integer id;

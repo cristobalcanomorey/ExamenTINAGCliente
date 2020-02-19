@@ -32,6 +32,7 @@
 	</form>
 	<%
 		String error = (String) request.getAttribute("error");
+	//Muestra el mensaje de error
 		if(error != null){
 			out.print("<p>"+error+"</p>");
 		}

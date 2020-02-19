@@ -32,6 +32,7 @@
 	%>
 	<form action="EliminarAccidente" method="POST">
 		<%
+		//Crea el input si hay accidente
 			if(accidente != null){
 				out.print("<input type='hidden' name='id' value='"+accidente.getId()+"'>");
 			}
